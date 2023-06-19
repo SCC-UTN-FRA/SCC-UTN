@@ -3,11 +3,12 @@
 class CreadorPedidos
 {
 
-    public function cargaPedido($conex, $pedidoStock, $pedidoFecha)
+    public function cargaPedido($conex, $pedidoStock)
     {
         $queryUltimo = "select cantidad,fecha from pedidos order by idPedido DESC limit 1";
         $resultadoUltimo = mysqli_query($conex, $queryUltimo);
         $filaUltimo = mysqli_fetch_assoc($resultadoUltimo);
+        $pedidoFecha = date('Y-m-d');
 
         if (!($pedidoStock ==  $filaUltimo['cantidad'])) {
             $query = "INSERT INTO pedidos (cantidad, fecha) VALUES ('$pedidoStock', '$pedidoFecha')";
@@ -52,7 +53,7 @@ class CreadorPedidos
                     <h5 class="card-title">Pedido Nº</h5>
                     <h4>#' . $filaPedido['idPedido'] . '</h4>
                     <p class="card-text">' . $filaPedido['cantidad'] . '</p>
-                    <p class="card-text">' . $filaPedido['fecha'] . '</p>
+                    <p class="card-text">' .date('d-m-Y', strtotime($filaPedido['fecha'])). '</p>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#' . $filaPedido['idPedido'] . '"> abrir pedido </button>
                     </div>
                 </div>';
@@ -84,6 +85,12 @@ class CreadorPedidos
             echo $card . '<br/>';
             echo $modal . '<br/>';
         }
+    }
+
+    public function fechaActualPedido(){
+        $fecha = date('d-m-Y');
+        $formValorFecha = '<input type="text" readonly class="form-control-plaintext" id="staticEmail" value="'.$fecha.'">';
+        echo $formValorFecha;
     }
     
 }

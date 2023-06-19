@@ -21,9 +21,9 @@ if (!isset($_SESSION['ObjetoPedidos'])) {
 $ObjetoPedidos = $_SESSION['ObjetoPedidos'];
 
 if (isset($_POST['cargarPedido'])) {
-    if (strlen(($_POST["cantidad"])) > 0 && strlen($_POST["fecha"]) >= 1) {
+
+    if (strlen(($_POST["cantidad"])) > 0) {
         $pedStock = $_POST["cantidad"];
-        $pedFecha = $_POST["fecha"];
         $ObjetoPedidos->cargaPedido($conex, $pedStock, $pedFecha);
     }
 }
