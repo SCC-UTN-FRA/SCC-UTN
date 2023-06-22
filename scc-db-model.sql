@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2023 a las 07:52:22
+-- Tiempo de generación: 22-06-2023 a las 02:47:01
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -29,10 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `pedidos` (
   `idPedido` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `fecha` date NOT NULL,
+  `fechaInicio` datetime DEFAULT NULL,
+  `fechaFinal` datetime DEFAULT NULL,
+  `fechaPedido` datetime NOT NULL,
   `habilitado` tinyint(1) NOT NULL DEFAULT 1,
-  `precioTotal` decimal(10,0) NOT NULL
+  `precioTotal` decimal(10,0) NOT NULL,
+  `Estado` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -51,7 +53,7 @@ CREATE TABLE `renglones` (
   `l` int(11) NOT NULL,
   `xl` int(11) NOT NULL,
   `xxl` int(11) NOT NULL,
-  `genero` int(11) NOT NULL
+  `genero` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
