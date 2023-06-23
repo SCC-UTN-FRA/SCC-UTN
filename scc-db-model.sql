@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2023 a las 15:06:59
+-- Tiempo de generación: 23-06-2023 a las 15:17:20
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `scc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `colores`
+--
+
+CREATE TABLE `colores` (
+  `idColores` int(11) NOT NULL,
+  `color` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `colores`
+--
+
+INSERT INTO `colores` (`idColores`, `color`) VALUES
+(1, 'Rojo'),
+(2, 'Amarillo'),
+(3, 'Azul');
 
 -- --------------------------------------------------------
 
@@ -79,6 +99,27 @@ INSERT INTO `renglones` (`idPedidoRenglon`, `idPedido`, `idRenglon`, `color`, `s
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipoestados`
+--
+
+CREATE TABLE `tipoestados` (
+  `idEstado` int(11) NOT NULL,
+  `descripcionEstado` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipoestados`
+--
+
+INSERT INTO `tipoestados` (`idEstado`, `descripcionEstado`) VALUES
+(2, 'En proceso'),
+(4, 'Finalizado'),
+(1, 'No iniciado'),
+(3, 'Suspendido');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tipogenero`
 --
 
@@ -102,6 +143,12 @@ INSERT INTO `tipogenero` (`idTipoGenero`, `Descripcion`, `Habilitado`) VALUES
 --
 
 --
+-- Indices de la tabla `colores`
+--
+ALTER TABLE `colores`
+  ADD PRIMARY KEY (`idColores`);
+
+--
 -- Indices de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
@@ -114,6 +161,12 @@ ALTER TABLE `renglones`
   ADD PRIMARY KEY (`idPedidoRenglon`);
 
 --
+-- Indices de la tabla `tipoestados`
+--
+ALTER TABLE `tipoestados`
+  ADD PRIMARY KEY (`descripcionEstado`);
+
+--
 -- Indices de la tabla `tipogenero`
 --
 ALTER TABLE `tipogenero`
@@ -122,6 +175,12 @@ ALTER TABLE `tipogenero`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `colores`
+--
+ALTER TABLE `colores`
+  MODIFY `idColores` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidos`
