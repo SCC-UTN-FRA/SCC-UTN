@@ -92,6 +92,8 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                         <table class="table ">
                             <thead>
                                 <tr>
+                                    <th scope="col">PEDIDO</th>
+                                    <th scope="col">RENGLON</th>
                                     <th scope="col">COLOR</th>
                                     <th scope="col">S</th>
                                     <th scope="col">M</th>
@@ -103,18 +105,23 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                             </thead>
                             <tbody>
                                 <?php
-                                $ObjetoRenglones->imprimirRenglones($conex);
+                                $ObjetoRenglones->printRenglonesSession();
                                 ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <form class="w-50" method="post">
-                    <input type="hidden" name="cargarPedido" value="true">
-                    <button type="submit" class="btn btn-secondary">Guardar pedido</button>
-                </form>
-
+                <div class='d-flex justify-content-between'>
+                    <form class="" method="post">
+                        <input type="hidden" name="cargarPedido" value="true">
+                        <button type="submit" class="btn btn-secondary">Guardar pedido</button>
+                    </form>
+                    <form class="" method="post">
+                        <input type="hidden" name="borrarRenglones" value="true">
+                        <button type="submit" class="btn btn-secondary">Borrar pedido</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
