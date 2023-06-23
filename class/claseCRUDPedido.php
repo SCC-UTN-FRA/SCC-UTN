@@ -11,8 +11,6 @@ class CreadorPedidos
         if (!$resultado) {
             die("Error al insertar valores: " . mysqli_error($conex));
         }
-        header("Location: index.php");
-        exit();
     }
 
     public function cancelarPedido($conex, $idPed)
@@ -60,23 +58,23 @@ class CreadorPedidos
             $fechaInicio = ($filaPedido['fechaInicio'] == NULL) ? 'no asignado' : $filaPedido['fechaInicio'];
             $fechaFinal = ($filaPedido['fechaFinal'] == NULL) ? 'no asignado' : $filaPedido['fechaFinal'];
             
-            $botonIniciar = ($filaPedido['Estado'] == 2) ? '': '<form method="post"> <input type="hidden" name="iniciarPedido" value="' . $filaPedido['idPedido'] . '"> <button type="submit" class="btn btn-sm btn-success" >Iniciar Pedido</button></form>';
+            $botonIniciar = ($filaPedido['Estado'] == 2 || $filaPedido['Estado'] == 4) ? '': '<form method="post"> <input type="hidden" name="iniciarPedido" value="' . $filaPedido['idPedido'] . '"> <button type="submit" class="btn btn-sm btn-success" >Iniciar Pedido</button></form>';
                 
-            $botonCancelar = ($filaPedido['Estado'] == 3) ? '': '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] .'"><button type="submit" class="btn btn-sm btn-danger">Cancelar Pedido</button></form>';
+            $botonCancelar = ($filaPedido['Estado'] == 3 || $filaPedido['Estado'] == 4) ? '': '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] .'"><button type="submit" class="btn btn-sm btn-danger">Cancelar Pedido</button></form>';
             
-            $botonFinalizar = ($filaPedido['Estado'] == 4) ? '': '<form method="post"><input type="hidden" name="finalizarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-secondary">Finalizar Pedido</button></form>';
+            $botonFinalizar = ($filaPedido['Estado'] == 4 ) ? '': '<form method="post"><input type="hidden" name="finalizarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-secondary">Finalizar Pedido</button></form>';
                 
             $card = '<button type="button" class="btn btn-dark d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#' . $filaPedido['idPedido'] . '">
-            <p class="">Pedido Nº # ' . $filaPedido['idPedido'] . '</p>          
-            <p class="">' . date('d-m-Y', strtotime($filaPedido['fechaPedido'])) . '</p>
-            <p class=""> Estado: ' . $filaPedido['descripcionEstado'] . '</p></button>  ';
+            <p class="m-2">Pedido Nº # ' . $filaPedido['idPedido'] . '</p>          
+            <p class="m-2">' . date('d-m-Y', strtotime($filaPedido['fechaPedido'])) . '</p>
+            <p class="m-2"> Estado: ' . $filaPedido['descripcionEstado'] . '</p></button>  ';
 
             $modal = '
                 <div class="modal" tabindex="-1" id="' . $filaPedido['idPedido'] . '">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h3 class="modal-title">Nº Pedido: #' . $filaPedido['idPedido']  . '</h3>
+                            <h3 class="modal-title">Nº Pedido: #' . $filaPedido['idPedido'] .' '.$filaPedido['descripcionEstado']  . '</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
