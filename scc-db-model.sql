@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2023 a las 02:47:01
+-- Tiempo de generación: 23-06-2023 a las 15:06:59
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -37,6 +37,14 @@ CREATE TABLE `pedidos` (
   `Estado` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`idPedido`, `fechaInicio`, `fechaFinal`, `fechaPedido`, `habilitado`, `precioTotal`, `Estado`) VALUES
+(1, NULL, NULL, '2023-06-23 00:37:12', 1, '0', 2),
+(2, NULL, NULL, '2023-06-23 00:37:56', 1, '0', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +63,18 @@ CREATE TABLE `renglones` (
   `xxl` int(11) NOT NULL,
   `genero` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `renglones`
+--
+
+INSERT INTO `renglones` (`idPedidoRenglon`, `idPedido`, `idRenglon`, `color`, `s`, `m`, `l`, `xl`, `xxl`, `genero`) VALUES
+(1, 1, 1, 'Rojo', 123, 123, 0, 123, 0, 'Hombre'),
+(2, 1, 2, 'Rojo', 123, 123, 123, 0, 0, 'Hombre'),
+(3, 2, 1, 'Azul', 654, 456, 5345, 34, 345, 'No-Binario'),
+(4, 2, 2, 'Amarillo', 34534, 5345, 65, 568, 5656, 'Hombre'),
+(5, 2, 3, 'Rojo', 4356, 345, 345, 234, 13, 'Mujer'),
+(6, 2, 4, 'Rojo', 1234, 324, 2342, 34234, 66888, 'Hombre');
 
 -- --------------------------------------------------------
 
@@ -107,13 +127,13 @@ ALTER TABLE `tipogenero`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `renglones`
 --
 ALTER TABLE `renglones`
-  MODIFY `idPedidoRenglon` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedidoRenglon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tipogenero`
