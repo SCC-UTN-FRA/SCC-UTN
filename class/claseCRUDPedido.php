@@ -60,7 +60,7 @@ class CreadorPedidos
             
             $botonIniciar = ($filaPedido['Estado'] == 2 || $filaPedido['Estado'] == 4) ? '': '<form method="post"> <input type="hidden" name="iniciarPedido" value="' . $filaPedido['idPedido'] . '"> <button type="submit" class="btn btn-sm btn-success" >Iniciar Pedido</button></form>';
                 
-            $botonCancelar = ($filaPedido['Estado'] == 3 || $filaPedido['Estado'] == 4) ? '': '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] .'"><button type="submit" class="btn btn-sm btn-danger">Cancelar Pedido</button></form>';
+            $botonCancelar = ($filaPedido['Estado'] == 3 || $filaPedido['Estado'] == 4) ? '': '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] .'"><button type="submit" class="btn btn-sm btn-danger">Suspender Pedido</button></form>';
             
             $botonFinalizar = ($filaPedido['Estado'] == 4 ) ? '': '<form method="post"><input type="hidden" name="finalizarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-secondary">Finalizar Pedido</button></form>';
                 

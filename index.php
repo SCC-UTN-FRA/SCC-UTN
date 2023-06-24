@@ -11,7 +11,8 @@ require_once 'class/claseCRUDRenglonesPedido.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/977a02dee3.js" crossorigin="anonymous"></script>
     <title>Sistema de Control de Camisas</title>
 </head>
@@ -35,7 +36,7 @@ require_once 'class/claseCRUDRenglonesPedido.php';
             </div>
         </div>
 
-        <div class="container mt-2 text-center">
+        <div class="container mt-2 text-center  ">
             <h4>ELIJA PEDIDO Y CANTIDAD</h4>
             <form class="d-flex align-items-center justify-content-center" method="post">
                 <table class="table ">
@@ -54,17 +55,23 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                     <tbody>
                         <tr>
                             <td style="width:120px;">
-                                <select class="form-select form-select-sm" aria-label="Default select example" name="miSelectorColor">
+                                <select class="form-select form-select-sm" aria-label="Default select example"
+                                    name="miSelectorColor">
                                     <?php
                                     $ObjetoRenglones->imprimircolor($conex);
                                     ?>
                                 </select>
                             </td>
-                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="S"></td>
-                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="M"></td>
-                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="L"></td>
-                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XL"></td>
-                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XXL"></td>
+                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="S">
+                            </td>
+                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="M">
+                            </td>
+                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="L">
+                            </td>
+                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XL">
+                            </td>
+                            <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XXL">
+                            </td>
                             <td style="width:160px;">
                                 <select class="form-select form-select-sm" name="miSelectorGenero">
                                     <?php
@@ -86,9 +93,9 @@ require_once 'class/claseCRUDRenglonesPedido.php';
 
         <div class="container mt-2">
             <div>
-                <div class="container text-center">
+                <div class="container text-center d-flex flex-column">
                     <h4>CURVA DE TALLE</h4>
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
                         <table class="table ">
                             <thead>
                                 <tr>
@@ -101,6 +108,8 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                                     <th scope="col">XL</th>
                                     <th scope="col">XXL</th>
                                     <th scope="col">GENERO</th>
+                                        <!-- <th scope="col">CANTIDAD TELA</th>
+                                        <th scope="col">AVIOS</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,6 +118,10 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                                 ?>
                             </tbody>
                         </table>
+                        <div class=' mt-3 mb-4 d-flex justify-content-between w-75'>
+                            <div scope="row">PRECIO COSTO</div>
+                            <div scope="row">PRECIO TOTAL</div>
+                        </div>
                     </div>
                 </div>
 
@@ -126,6 +139,7 @@ require_once 'class/claseCRUDRenglonesPedido.php';
         </div>
     </div>
 
+
     <!--//////////  Esta parte imprime los pedidos ////////////////////////// -->
     <div>
         <div class="container text-center">
@@ -141,10 +155,12 @@ require_once 'class/claseCRUDRenglonesPedido.php';
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <script>
         var modales = document.querySelectorAll('.modal');
-        $(function() {
+        $(function () {
             $(modales[0].id).modal('show');
         })
     </script>
