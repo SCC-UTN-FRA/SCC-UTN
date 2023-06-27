@@ -2,6 +2,8 @@
 
 class CabecerasRenglones
 {
+    public $ListaRenglones;
+    
     function __construct()
     {
         $this->ListaRenglones = array();

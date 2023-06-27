@@ -14,6 +14,34 @@ require_once 'class/claseCRUDRenglonesPedido.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/977a02dee3.js" crossorigin="anonymous"></script>
     <title>Sistema de Control de Camisas</title>
+    <style>
+        /* Barra Lateral */
+        *::-webkit-scrollbar {
+            width: 4px;
+            /* width of the entire scrollbar */
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #212529;
+            background-repeat: no-repeat;
+            /* color of the tracking area */
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: grey;
+            /* color of the scroll thumb */
+            border-radius: 50px;
+            /* roundness of the scroll thumb */
+            /* border: .5px solid var(--colorBlanco) */
+            ;
+            /* creates padding around scroll thumb */
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background-color: grey;
+            /* color of the scroll thumb */
+        }
+    </style>
 </head>
 
 <body data-bs-theme="dark" class="container d-flex flex-column align-items-center">

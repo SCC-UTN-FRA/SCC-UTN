@@ -15,7 +15,7 @@ class CreadorPedidos
 
     public function cancelarPedido($conex, $idPed)
     {
-        $queryDeshabilitar = "UPDATE pedidos SET Estado= 3 WHERE idPedido = $idPed";
+        $queryDeshabilitar = "UPDATE pedidos SET Estado= 3, fechaSuspendido=NOW() WHERE idPedido = $idPed";
         $resultado = mysqli_query($conex, $queryDeshabilitar);
 
         if (!$resultado) {
@@ -24,7 +24,7 @@ class CreadorPedidos
     }
     public function finalizarPedido($conex, $idPed)
     {
-        $queryDeshabilitar = "UPDATE pedidos SET Estado= 4,fechaFinal=NOW() WHERE idPedido = $idPed";
+        $queryDeshabilitar = "UPDATE pedidos SET Estado= 4, fechaFinal=NOW() WHERE idPedido = $idPed";
         $resultado = mysqli_query($conex, $queryDeshabilitar);
 
         if (!$resultado) {
@@ -56,13 +56,12 @@ class CreadorPedidos
         while ($filaPedido = mysqli_fetch_assoc($resultado)) {
 
             $fechaInicio = ($filaPedido['fechaInicio'] == NULL) ? 'no asignado' : $filaPedido['fechaInicio'];
+            $fechaSuspendido = ($filaPedido['fechaSuspendido'] == NULL) ? 'no asignado' : $filaPedido['fechaSuspendido'];
             $fechaFinal = ($filaPedido['fechaFinal'] == NULL) ? 'no asignado' : $filaPedido['fechaFinal'];
 
-            $botonIniciar = ($filaPedido['Estado'] == 2 || $filaPedido['Estado'] == 4) ? '' : '<form method="post"> <input type="hidden" name="iniciarPedido" value="' . $filaPedido['idPedido'] . '"> <button type="submit" class="btn btn-sm btn-success" >Iniciar</button></form>';
-
-            $botonCancelar = ($filaPedido['Estado'] == 3 || $filaPedido['Estado'] == 4) ? '' : '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-danger">Suspender</button></form>';
-
-            $botonFinalizar = ($filaPedido['Estado'] == 4) ? '' : '<form method="post"><input type="hidden" name="finalizarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-secondary">Finalizar</button></form>';
+            $botonIniciar = ($filaPedido['Estado'] == 2 || $filaPedido['Estado'] == 4) ? '' : '<form method="post"> <input type="hidden" name="iniciarPedido" value="' . $filaPedido['idPedido'] . '"> <button type="submit" class="btn btn-sm btn-success m-1" >Iniciar</button></form>';
+            $botonCancelar = ($filaPedido['Estado'] == 3 || $filaPedido['Estado'] == 4) ? '' : '<form method="post"><input type="hidden" name="cancelarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-danger m-1">Suspender</button></form>';
+            $botonFinalizar = ($filaPedido['Estado'] == 4) ? '' : '<form method="post"><input type="hidden" name="finalizarPedido" value="' . $filaPedido['idPedido'] . '"><button type="submit" class="btn btn-sm btn-secondary m-1">Finalizar</button></form>';
 
             $color = '';
 
@@ -82,65 +81,31 @@ class CreadorPedidos
 
             $modal = '
                 <div class="modal fade" tabindex="-1" id="' . $filaPedido['idPedido'] . '">
-                    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-dialog modal-fullscreen modal-dialog-centered">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header justify-content-start">
                                 <div>
                                     <h6 class="modal-title">Nº#' . $filaPedido['idPedido'] . ' / ' . date('d-m-Y', strtotime($filaPedido['fechaPedido'])) . '</h6>
                                 </div>
-                                <h6 class="modal-title text-' . $color . '">' . $filaPedido['descripcionEstado']  . '</h6>
+                                <h6 class="ms-3 modal-title text-' . $color . '">' . $filaPedido['descripcionEstado']  . '</h6>
                             </div>
                                 <div class="row modal-body justify-content-center">
-                                    
-                                    <div>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        </br>
-                                        <h3>Curva de Pedido</h3>
-                                        <hr>
+                                    <div class="col-lg-6 overflow-y-hidden">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                        Nullam volutpat justo ut eros commodo, id viverra purus efficitur.<br>
+                                        Quisque auctor tellus eget velit ultrices lacinia.<br>
+                                        Maecenas id ligula at libero convallis congue.<br>
+                                        Nam non sapien nec mi efficitur venenatis.<br>
+                                        Pellentesque sed enim ac mauris fringilla interdum.<br>
+                                        Vivamus dignissim orci in erat tempor, non bibendum sem venenatis.<br>
+                                        Aliquam luctus dui ut massa dignissim, id mattis elit lacinia.<br>
+                                        Duis sed felis eu sem posuere egestas eu vel elit.<br>
+                                        Suspendisse ac metus vel nisi finibus pellentesque a sit amet diam.</p>
                                     </div>
-
-                                    <div class="col-lg-8">
-                                        <table class="table table-striped table-hover">
-                                            <thead>
+                                    
+                                    <div class="col-lg-6 overflow-y-scroll h-100"  id="tableColor">
+                                        <table class=" table table-striped table-hover">
+                                            <thead class="text-bg-dark" style="position: sticky; top: -15px;">
                                                 <tr>
                                                     <th scope="col" class="col-lg-1">S</th>
                                                     <th scope="col" class="col-lg-1">M</th>
@@ -151,20 +116,25 @@ class CreadorPedidos
                                                     <th scope="col" class="col-lg-1">G</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>';
+                                            <tbody class="table-group-divider" >
+                                            
+                                            ';
 
 
-            $modalFooter = '                </tbody>
+            $modalFooter = '                
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             
-                            <div class="modal-footer">
-                                <p class="mb-0">Iniciado: ' . $fechaInicio . '.</p>
-                                <p class="mb-0">Finalizado: ' . $fechaFinal . '.</p>                               
+                            <div class="modal-footer justify-content-start">
+                                <p class="mb-0"><b>Iniciado</b>: ' . $fechaInicio . '.</p>
+                                <p class="mb-0"><b>Suspendido</b>: ' . $fechaSuspendido . '.</p>
+                                <p class="mb-0"><b>Finalizado</b>: ' . $fechaFinal . '.</p>                               
                             </div>
-                            <div class="modal-footer justify-content-space-between">
-                                ' . $botonIniciar . $botonCancelar . $botonFinalizar . '
+                            <div class="modal-footer justify-content-between align-items-center">
+                                <div class="ml-auto"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                <div class="d-flex">' . $botonIniciar . $botonCancelar .' '. $botonFinalizar . '</div>
                             </div>
                         </div>
                     </div>
