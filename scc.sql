@@ -149,6 +149,59 @@ CREATE TABLE `tipo_medida` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `tipo_medida`
+--
+
+INSERT INTO `tipo_medida` (`medida`,`descripcion_medida`) VALUES
+('300','metros'),
+('300','cm'),
+('300','gramos'),
+('300','tonelada'),
+('300','metros'),
+('300','kilometros'),
+('300','litros');
+--
+-- Estructura de tabla para la tabla `tipo_stock`
+--
+
+CREATE TABLE `tipo_stock` (
+  `id_tipo_stock` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `descripcion` varchar(20) NOT NULL,
+  `Habilitado` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tipo_stock`
+--
+
+INSERT INTO `tipo_stock` (`Descripcion`) VALUES
+('tela'),
+('hilo'),
+('botones'),
+('pintura');
+
+--
+-- Estructura de tabla para la tabla `stocks`
+--
+
+CREATE TABLE `stocks` (
+  `idStocks` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `id_tipo_stock` int(11) NOT NULL,
+  `id_tipomedida` int(11) NOT NULL,
+  `Habilitado` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `stocks`
+--
+
+INSERT INTO `stocks` (`Descripcion`) VALUES
+('','tela'),
+('hilo'),
+('botones'),
+('pintura');
+
+--
 -- Índices para tablas volcadas
 --
 
