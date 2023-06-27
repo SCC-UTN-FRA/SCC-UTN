@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2023 a las 15:22:16
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 27-06-2023 a las 23:07:18
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `colores` (
   `idColores` int(11) NOT NULL,
   `color` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `colores`
@@ -57,7 +57,7 @@ CREATE TABLE `curvadetalles` (
   `medida_manga` decimal(10,0) NOT NULL,
   `medida_cuello` decimal(10,0) NOT NULL,
   `tipo_medida` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -68,20 +68,13 @@ CREATE TABLE `curvadetalles` (
 CREATE TABLE `pedidos` (
   `idPedido` int(11) NOT NULL,
   `fechaInicio` datetime DEFAULT NULL,
+  `fechaSuspendido` datetime DEFAULT NULL,
   `fechaFinal` datetime DEFAULT NULL,
   `fechaPedido` datetime NOT NULL,
   `habilitado` tinyint(1) NOT NULL DEFAULT 1,
   `precioTotal` decimal(10,0) NOT NULL,
   `Estado` int(11) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `pedidos`
---
-
-INSERT INTO `pedidos` (`idPedido`, `fechaInicio`, `fechaFinal`, `fechaPedido`, `habilitado`, `precioTotal`, `Estado`) VALUES
-(1, NULL, NULL, '2023-06-23 00:37:12', 1, 0, 2),
-(2, NULL, NULL, '2023-06-23 00:37:56', 1, 0, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -100,19 +93,7 @@ CREATE TABLE `renglones` (
   `xl` int(11) NOT NULL,
   `xxl` int(11) NOT NULL,
   `genero` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `renglones`
---
-
-INSERT INTO `renglones` (`idPedidoRenglon`, `idPedido`, `idRenglon`, `color`, `s`, `m`, `l`, `xl`, `xxl`, `genero`) VALUES
-(1, 1, 1, 'Rojo', 123, 123, 0, 123, 0, 'Hombre'),
-(2, 1, 2, 'Rojo', 123, 123, 123, 0, 0, 'Hombre'),
-(3, 2, 1, 'Azul', 654, 456, 5345, 34, 345, 'No-Binario'),
-(4, 2, 2, 'Amarillo', 34534, 5345, 65, 568, 5656, 'Hombre'),
-(5, 2, 3, 'Rojo', 4356, 345, 345, 234, 13, 'Mujer'),
-(6, 2, 4, 'Rojo', 1234, 324, 2342, 34234, 66888, 'Hombre');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -123,7 +104,7 @@ INSERT INTO `renglones` (`idPedidoRenglon`, `idPedido`, `idRenglon`, `color`, `s
 CREATE TABLE `tipoestados` (
   `idEstado` int(11) NOT NULL,
   `descripcionEstado` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipoestados`
@@ -145,7 +126,7 @@ CREATE TABLE `tipogenero` (
   `idTipoGenero` int(11) NOT NULL,
   `Descripcion` varchar(50) NOT NULL,
   `Habilitado` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tipogenero`
@@ -153,8 +134,7 @@ CREATE TABLE `tipogenero` (
 
 INSERT INTO `tipogenero` (`idTipoGenero`, `Descripcion`, `Habilitado`) VALUES
 (1, 'Hombre', 1),
-(2, 'Mujer', 1),
-(3, 'No-Binario', 1);
+(2, 'Mujer', 1);
 
 -- --------------------------------------------------------
 
@@ -166,7 +146,7 @@ CREATE TABLE `tipo_medida` (
   `id_tipomedida` int(11) NOT NULL,
   `medida` varchar(5) NOT NULL,
   `descripcion_medida` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Índices para tablas volcadas
@@ -234,13 +214,13 @@ ALTER TABLE `curvadetalles`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `renglones`
 --
 ALTER TABLE `renglones`
-  MODIFY `idPedidoRenglon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idPedidoRenglon` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipogenero`

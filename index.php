@@ -11,10 +11,37 @@ require_once 'class/claseCRUDRenglonesPedido.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/977a02dee3.js" crossorigin="anonymous"></script>
     <title>Sistema de Control de Camisas</title>
+    <style>
+        /* Barra Lateral */
+        *::-webkit-scrollbar {
+            width: 4px;
+            /* width of the entire scrollbar */
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #212529;
+            background-repeat: no-repeat;
+            /* color of the tracking area */
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: grey;
+            /* color of the scroll thumb */
+            border-radius: 50px;
+            /* roundness of the scroll thumb */
+            /* border: .5px solid var(--colorBlanco) */
+            ;
+            /* creates padding around scroll thumb */
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background-color: grey;
+            /* color of the scroll thumb */
+        }
+    </style>
 </head>
 
 <body data-bs-theme="dark" class="container d-flex flex-column align-items-center">
@@ -33,35 +60,29 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                 <label for="staticEmail" class="col">Pedido N°:
                     <?php echo $ObjetoPedidos->traeIdPedido($conex); ?>
                 </label>
+
             </div>
         </div>
 
         <div class="container mt-2 text-center  ">
-            <h4>ELIJA PEDIDO Y CANTIDAD</h4>
+            <h4>Elija cantidad</h4>
+            <hr class="mb-0">
             <form class="d-flex align-items-center justify-content-center" method="post">
                 <table class="table ">
                     <thead>
                         <tr>
-                            <th scope="col">COLOR</th>
                             <th scope="col">S</th>
                             <th scope="col">M</th>
                             <th scope="col">L</th>
                             <th scope="col">XL</th>
                             <th scope="col">XXL</th>
-                            <th scope="col">GENERO</th>
+                            <th scope="col">COL</th>
+                            <th scope="col">GEN</th>
                             <th scope="col">ENVIAR</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="width:120px;">
-                                <select class="form-select form-select-sm" aria-label="Default select example"
-                                    name="miSelectorColor">
-                                    <?php
-                                    $ObjetoRenglones->imprimircolor($conex);
-                                    ?>
-                                </select>
-                            </td>
                             <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="S">
                             </td>
                             <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="M">
@@ -71,6 +92,13 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                             <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XL">
                             </td>
                             <td style="width:70px;"><input type="text" class="form-control form-control-sm" name="XXL">
+                            </td>
+                            <td style="width:120px;">
+                                <select class="form-select form-select-sm" aria-label="Default select example" name="miSelectorColor">
+                                    <?php
+                                    $ObjetoRenglones->imprimircolor($conex);
+                                    ?>
+                                </select>
                             </td>
                             <td style="width:160px;">
                                 <select class="form-select form-select-sm" name="miSelectorGenero">
@@ -94,21 +122,21 @@ require_once 'class/claseCRUDRenglonesPedido.php';
         <div class="container mt-2">
             <div>
                 <div class="container text-center d-flex flex-column">
-                    <h4>CURVA DE TALLE</h4>
+                    <h5>Curva de Pedido</h5>
                     <div class="d-flex align-items-center justify-content-center flex-column">
                         <table class="table ">
                             <thead>
                                 <tr>
-                                    <th scope="col">PEDIDO</th>
-                                    <th scope="col">RENGLON</th>
-                                    <th scope="col">COLOR</th>
-                                    <th scope="col">S</th>
-                                    <th scope="col">M</th>
-                                    <th scope="col">L</th>
-                                    <th scope="col">XL</th>
-                                    <th scope="col">XXL</th>
-                                    <th scope="col">GENERO</th>
-                                        <!-- <th scope="col">CANTIDAD TELA</th>
+                                    <!-- <th scope="col" class="col-lg-1">idRenglon</th> -->
+                                    <th scope="col" class="col-lg-1">S</th>
+                                    <th scope="col" class="col-lg-1">M</th>
+                                    <th scope="col" class="col-lg-1">L</th>
+                                    <th scope="col" class="col-lg-1">XL</th>
+                                    <th scope="col" class="col-lg-1">XXL</th>
+                                    <th scope="col" class="col-lg-1">COL</th>
+                                    <th scope="col" class="col-lg-1">GEN</th>
+                                    <th scope="col" class="col-lg-1"></th>
+                                    <!-- <th scope="col">CANTIDAD TELA</th>
                                         <th scope="col">AVIOS</th> -->
                                 </tr>
                             </thead>
@@ -117,13 +145,15 @@ require_once 'class/claseCRUDRenglonesPedido.php';
                                 $ObjetoRenglones->printRenglonesSession();
                                 ?>
                             </tbody>
+
+
                         </table>
-                        <div class=' mt-3 mb-4 d-flex justify-content-between w-75'>
-                            <div scope="row">PRECIO COSTO</div>
-                            <div scope="row">PRECIO TOTAL</div>
-                        </div>
+                        <tfoot>
+                            <h5>Precio total</h5>
+                        </tfoot>
                     </div>
                 </div>
+
 
                 <div class='d-flex justify-content-between'>
                     <form class="" method="post">
@@ -154,15 +184,10 @@ require_once 'class/claseCRUDRenglonesPedido.php';
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script>
-        var modales = document.querySelectorAll('.modal');
-        $(function () {
-            $(modales[0].id).modal('show');
-        })
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
 </body>
 
