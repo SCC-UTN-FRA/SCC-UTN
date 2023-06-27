@@ -28,23 +28,25 @@ $ObjetoRenglones = $_SESSION['CabecerasRenglones'];
 
 if (isset($_POST['cargarPedido'])) {
 
-    $pedidoActual = $ObjetoPedidos->traeIdPedido($conex);
+    if ($ObjetoRenglones->ListaRenglones != NULL) {
+        $pedidoActual = $ObjetoPedidos->traeIdPedido($conex);
 
-    foreach ($ObjetoRenglones->ListaRenglones as $tablaRenglones) {
-        $idRenglon = $tablaRenglones['idRenglon'];
-        $color = $tablaRenglones['color'];
-        $genero = $tablaRenglones['gen'];
-        $S = $tablaRenglones['talleS'];
-        $M = $tablaRenglones['talleM'];
-        $L = $tablaRenglones['talleL'];
-        $XL = $tablaRenglones['talleXL'];
-        $XXL = $tablaRenglones['talleXXL'];
-        $ObjetoRenglones->DB_cargarRenglones($conex, $pedidoActual , $idRenglon, $color, $S, $M, $L, $XL, $XXL, $genero);
+        foreach ($ObjetoRenglones->ListaRenglones as $tablaRenglones) {
+            $idRenglon = $tablaRenglones['idRenglon'];
+            $color = $tablaRenglones['color'];
+            $genero = $tablaRenglones['gen'];
+            $S = $tablaRenglones['talleS'];
+            $M = $tablaRenglones['talleM'];
+            $L = $tablaRenglones['talleL'];
+            $XL = $tablaRenglones['talleXL'];
+            $XXL = $tablaRenglones['talleXXL'];
+            $ObjetoRenglones->DB_cargarRenglones($conex, $pedidoActual, $idRenglon, $color, $S, $M, $L, $XL, $XXL, $genero);
+        }
+        $ObjetoPedidos->cargaPedido($conex);
+        unset($_SESSION['CabecerasRenglones']);
+        header("Location: index.php");
+        exit();
     }
-    $ObjetoPedidos->cargaPedido($conex);
-    unset($_SESSION['CabecerasRenglones']);
-    header("Location: index.php");
-    exit();
 }
 
 if (isset($_POST['cancelarPedido'])) {
@@ -73,16 +75,23 @@ if (isset($_POST['cargarRenglon'])) {
         $genero = $_POST['miSelectorGenero'];
 
         $pedidoActual = strval($ObjetoPedidos->traeIdPedido($conex));
-
+        $idRengAct = $ObjetoRenglones->devolverRenglon();
         $S = $_POST['S'];
         $M = $_POST['M'];
         $L = $_POST['L'];
         $XL = $_POST['XL'];
         $XXL = $_POST['XXL'];
 
-        $ObjetoRenglones->loadRenglonesSession($pedidoActual, $color, $S, $M, $L, $XL, $XXL, $genero);
+        $ObjetoRenglones->loadRenglonesSession($pedidoActual, $idRengAct , $color, $S, $M, $L, $XL, $XXL, $genero);
     }
 
+    header("Location: index.php");
+    exit();
+}
+
+if(isset($_POST['eliminarRenglon'])){
+    $idReng = $_POST['eliminarRenglon'];
+    $ObjetoRenglones->borrarRenglonSession($idReng);
     header("Location: index.php");
     exit();
 }
